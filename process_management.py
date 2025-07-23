@@ -12,24 +12,121 @@ from datetime import datetime
 from typing import Dict, List, Optional
 from ui_components import render_section_header, render_action_buttons, render_modern_dataframe
 
+def get_fallback_processes():
+    """Vráti fallback procesy ak databáza nefunguje"""
+    return [
+        {
+            'id': 1,
+            'name': 'Spracovanie objednávok zákazníkov',
+            'category': 'obchod',
+            'owner': 'Mária Novák - Obchodný manažér',
+            'frequency': 'denne',
+            'duration_minutes': 45,
+            'priority': 5,
+            'automation_readiness': 4,
+            'created_at': '2024-01-01'
+        },
+        {
+            'id': 2,
+            'name': 'Schvaľovanie dovoleniek',
+            'category': 'HR',
+            'owner': 'Peter Kováč - HR manažér',
+            'frequency': 'týždenne',
+            'duration_minutes': 15,
+            'priority': 3,
+            'automation_readiness': 5,
+            'created_at': '2024-01-02'
+        },
+        {
+            'id': 3,
+            'name': 'Fakturácia dodávateľom',
+            'category': 'administratíva',
+            'owner': 'Anna Krásna - Účtovníčka',
+            'frequency': 'denne',
+            'duration_minutes': 20,
+            'priority': 4,
+            'automation_readiness': 3,
+            'created_at': '2024-01-03'
+        }
+    ]
+
 def render_process_management():
     """Render správy procesov - zoznam, editácia, mazanie"""
     
-    # Načítanie procesov
+    st.markdown("### 🔍 DEBUG INFORMÁCIE")
+    st.info("Testovanie načítavania procesov...")
+    
+    # Načítanie procesov s detailným debugom
+    processes = []
+    debug_info = []
+    
     try:
-        with sqlite3.connect("adsun_processes.db") as conn:
-            conn.row_factory = sqlite3.Row
-            cursor = conn.execute("""
-                SELECT id, name, category, owner, frequency, duration_minutes, 
-                       priority, automation_readiness, created_at
-                FROM processes 
-                WHERE is_active = 1
-                ORDER BY category, name
-            """)
-            processes = [dict(row) for row in cursor.fetchall()]
+        import os
+        db_path = "adsun_processes.db"
+        
+        # Debug: skontroluj súbor
+        if os.path.exists(db_path):
+            file_size = os.path.getsize(db_path)
+            debug_info.append(f"✅ Databáza existuje: {db_path} ({file_size} bytov)")
+        else:
+            debug_info.append(f"❌ Databáza neexistuje: {db_path}")
+            st.error("Databáza neexistuje! Používam fallback dáta.")
+            processes = get_fallback_processes()
+        
+        if not processes:  # Ak ešte stále nemáme procesy, skús načítať z DB
+            with sqlite3.connect(db_path) as conn:
+                conn.row_factory = sqlite3.Row
+                
+                # Debug: skontroluj tabuľky
+                cursor = conn.execute("SELECT name FROM sqlite_master WHERE type='table'")
+                tables = [row[0] for row in cursor.fetchall()]
+                debug_info.append(f"📊 Tabuľky v DB: {tables}")
+                
+                if 'processes' in tables:
+                    # Debug: skontroluj stĺpce
+                    cursor = conn.execute("PRAGMA table_info(processes)")
+                    columns = [row[1] for row in cursor.fetchall()]
+                    debug_info.append(f"📋 Stĺpce v processes: {columns}")
+                    
+                    # Skús načítať procesy
+                    if 'is_active' in columns:
+                        cursor = conn.execute("""
+                            SELECT id, name, category, owner, frequency, duration_minutes, 
+                                   priority, automation_readiness, created_at
+                            FROM processes 
+                            WHERE is_active = 1
+                            ORDER BY category, name
+                        """)
+                    else:
+                        # Ak chýba is_active stĺpec
+                        cursor = conn.execute("""
+                            SELECT id, name, category, owner, frequency, duration_minutes, 
+                                   priority, automation_readiness, created_at
+                            FROM processes 
+                            ORDER BY category, name
+                        """)
+                    
+                    processes = [dict(row) for row in cursor.fetchall()]
+                    debug_info.append(f"📈 Načítaných procesov: {len(processes)}")
+                    
+                else:
+                    debug_info.append("❌ Tabuľka 'processes' neexistuje")
+                    processes = get_fallback_processes()
+                    
     except Exception as e:
+        debug_info.append(f"❌ Chyba: {str(e)}")
         st.error(f"❌ Chyba načítavania: {e}")
-        processes = []
+        processes = get_fallback_processes()
+    
+    # Zobraz debug info
+    with st.expander("🔍 Debug informácie", expanded=True):
+        for info in debug_info:
+            st.text(info)
+    
+    # Ak stále nemáme procesy, použij fallback
+    if not processes:
+        st.warning("⚠️ Žiadne procesy v databáze. Používam ukážkové dáta.")
+        processes = get_fallback_processes()
     
     # Moderný header so štatistikami
     stats = {
