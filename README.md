@@ -169,4 +169,4 @@ Tento projekt je licencovaný pod MIT licenciou - detaily v [LICENSE](LICENSE) s
 
 **⭐ Ak sa vám projekt páči, pridajte hviezdu na GitHub!**
 
-[![GitHub stars](https://img.shields.io/github/stars/zonabxxx/adsun-manager.svg?style=social&label=Star)](https://github.com/zonabxxx/adsun-manager) 
+[![GitHub stars](https://img.shields.io/github/stars/zonabxxx/adsun-manager.svg?style=social&label=Star)](https://github.com/zonabxxx/adsun-manager) # Last updated: Wed Jul 23 15:38:47 CEST 2025
