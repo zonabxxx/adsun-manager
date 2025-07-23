@@ -1,208 +1,172 @@
 # 🎯 ADSUN AI Process Management System
 
-Kompletný systém pre učenie, dokumentovanie a správu business procesov s umelou inteligenciou.
+**Inteligentný systém na správu firemných procesov s AI podporou**
 
-## 🚀 Spustenie aplikácie
+[![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=flat&logo=streamlit&logoColor=white)](https://streamlit.io/)
+[![Python](https://img.shields.io/badge/Python-3.8+-blue?style=flat&logo=python&logoColor=white)](https://python.org)
+[![OpenAI](https://img.shields.io/badge/OpenAI-API-green?style=flat&logo=openai&logoColor=white)](https://openai.com/)
 
-### 🔘 Hlavný launcher (odporúčané)
-```bash
-python launcher.py
-```
+## 📋 Prehľad
 
-**Ponúka voľbu medzi:**
-1. **🤖 ADSUN AI Assistant** - Kompletný systém s AI reasoning
-2. **🗄️ ADSUN Airtable Manager** - Clean chat interface  
-3. **⚙️ Konfigurácia API kľúčov** - Pomoc s nastavením
+ADSUN je moderný web-based systém na správu firemných procesov s pokročilými AI funkciami. Umožňuje firmám efektívne organizovať, analyzovať a optimalizovať svoje business procesy pomocou umelej inteligencie.
 
-### 🔘 Priamo spustenie jednotlivých interface
+## 🚀 Hlavné funkcie
 
-**Kompletný ADSUN AI Assistant:**
-```bash
-python run_adsun_gui.py
-# URL: http://localhost:8501
-```
-
-**Clean Airtable Manager:**
-```bash
-python run_airtable_manager.py  
-# URL: http://localhost:8502
-```
-
-## 🌟 Interface možnosti
-
-### 🤖 ADSUN AI Assistant (Port 8501)
-- **AI-driven learning režim** - Inteligentné otázky pre dokumentovanie procesov
-- **Assistant režim** - AI odpovede s predikciami a návrhmi
-- **Pokročilé AI reasoning** - GPT-3.5-turbo analýza
-- **Multi-database podpora** - SQLite + Airtable
-- **Komplexný dizajn** - Karty, metriky, pokročilé funkcie
-
-### 🗄️ ADSUN Airtable Manager (Port 8502)  
-- **Clean chat interface** - Jednoduché a čisté rozhranie
-- **Fokus na Airtable** - Optimalizované pre cloud databázu
-- **Rýchle otázky** - Predefined buttony pre časté úlohy
-- **Real-time chat** - Chat s dátami ako s assistantom
-- **Minimalistický dizajn** - Inšpirované moderným UI
-
-## 💾 Ukladanie API kľúčov
-
-### 🔒 Tri spôsoby bezpečného ukladania:
-
-**1. Zašifrované ukladanie (najbezpečnejšie)**
-- AES-256 šifrovanie
-- Vyžaduje heslo pri každom načítaní
-- Ukladá sa do `~/.adsun/keys.enc`
-
-**2. .env súbor (odporúčané)**
-- Štandardný development spôsob
-- Automaticky načítané pri spustení
-- Súbor `.env` v projekte
-
-**3. Lokálny config (testing)**
-- Rýchle a jednoduché
-- Uložené v `~/.adsun/config.json`
-- Menej bezpečné
-
-### 🔑 Potrebné API kľúče:
-
-**OpenAI API Key (povinné pre AI):**
-- Získať: https://platform.openai.com/api-keys
-- Používa sa: GPT-3.5-turbo pre reasoning
-
-**Airtable API (voliteľné):**
-- Získať: https://airtable.com/create/tokens
-- Base ID: ID vašej Airtable databázy
-- Používa sa: Cloud synchronizácia procesov
-
-## 🗄️ Databázová podpora
-
-### Hybrid Database Manager
-- **SQLite** - Lokálne ukladanie (default)
-- **Airtable** - Cloud synchronizácia
-- **Automatické fallback** - Ak Airtable zlyhá, použije SQLite
-- **Real-time sync** - Okamžitá synchronizácia s cloud
-
-### Airtable Setup
-1. Vytvorte nový Airtable base
-2. Vytvorte tabuľky: `Processes`, `Documentation Sessions`, `Process Steps`
-3. Získajte Personal Access Token
-4. Skopírujte Base ID z URL
-5. Zadajte do aplikácie
-
-## 🤖 AI Reasoning Engine
-
-### Skutočné AI (s OpenAI API):
-- **Analýza odpovedí** - Extrakcia systémov, ľudí, problémov
-- **Inteligentné otázky** - Kontextové follow-up otázky
-- **Automatizačný potenciál** - Hodnotenie 1-5 s odôvodnením
-- **Predikcie** - Ďalšie otázky a akcie
-- **JSON štruktúrované odpovede**
-
-### Fallback režim (bez API):
-- **Keyword analýza** - Základné rozpoznávanie
-- **Preddefinované otázky** - Štandardné flow
-- **Základné insights** - Algoritmická analýza
-
-## 🎯 Funkcie systému
-
-### 📚 Učenie procesov
-- AI sa pýta inteligentné otázky
-- Postupné budovanie kontextu
-- Automatická analýza odpovedí
-- Identifikácia automatizačného potenciálu
-
-### 🤖 AI Assistant
-- Chat s existujúcimi procesmi
-- Predikcia ďalších otázok
-- Odporúčané akcie
-- Automatizačné možnosti
+### 🤖 AI-Powered Features
+- **Postupný AI sprievodca** - krok za krokom tvorba procesov s AI odporúčaniami
+- **Bulk import z ChatGPT** - nahratie celej konverzácie a automatické parsovanie
+- **Inteligentný AI asistent** - odpovedá na otázky o procesoch v slovenčine
+- **Smart kategorizácia** - AI automaticky navrhuje kategórie a vylepšenia
 
 ### 📊 Process Management
-- Kategorizácia procesov
-- Vlastníci a zodpovednosti
-- Časové odhady
-- KPI a metriky
+- **Kompletná správa procesov** - vytváranie, editácia, mazanie, zobrazovanie
+- **Detailné kroky procesov** - oddelené hlavné kroky a detailné popisy
+- **Rizikové analýzy** - identifikácia problémov a návrhov riešení
+- **Automatizačné hodnotenie** - posúdenie vhodnosti procesov na automatizáciu
 
-### 💾 Persistent Storage
-- Lokálne SQLite databáza
-- Cloud Airtable synchronizácia
-- Kompletná historia konverzácií
-- Exportovateľné dáta
+### 🏢 Organizačná štruktúra
+- **Správa oddelení** - organizácia procesov podľa oddelení
+- **Riadenie pozícií** - definovanie rolí a zodpovedností
+- **Vlastníci procesov** - priradenie zodpovedných osôb
 
-## 🔧 Inštalácia
+### 📈 Analytics & Insights
+- **Procesné štatistiky** - prehľady a metriky
+- **Výkonnostné analýzy** - hodnotenie efektívnosti
+- **Automatizačné odporúčania** - AI návrhy na zlepšenie
 
-### Požiadavky
+## 🛠️ Technické špecifikácie
+
+### Tech Stack
+- **Frontend**: Streamlit (Python web framework)
+- **Backend**: Python 3.8+
+- **Database**: SQLite (lokálne úložisko)
+- **AI Engine**: OpenAI GPT-3.5-turbo/GPT-4
+- **UI Framework**: Custom Streamlit components
+
+### Architektúra
 ```
-Python 3.8+
-streamlit>=1.28.0
-openai>=1.3.0
-cryptography>=41.0.0
-requests>=2.31.0
-pandas>=2.1.0
-plotly>=5.17.0
+📁 ADSUN/
+├── 🎯 main_app.py              # Hlavná aplikácia
+├── 🧠 ai_components.py         # AI funkcionalita  
+├── 💾 database_components.py   # Databázové operácie
+├── 🎨 ui_components.py         # UI komponenty
+├── 📊 process_management.py    # Správa procesov
+├── 🏢 departments_management.py # Správa oddelení
+├── 👥 positions_management.py  # Správa pozícií
+├── 🤖 adsun_knowledge_assistant.py # AI asistent
+└── 📋 requirements.txt         # Dependencies
 ```
 
-### Setup
+## 🚀 Rýchly štart
+
+### 1. Lokálne spustenie
+
 ```bash
-# 1. Klonujte/stiahnite projekt
-git clone <repo> && cd adsun
+# Clone repository
+git clone https://github.com/zonabxxx/adsun-manager.git
+cd adsun-manager
 
-# 2. Nainštalujte závislosti
+# Inštalácia závislostí
 pip install -r requirements.txt
 
-# 3. Spustite launcher
-python launcher.py
-
-# Alebo priamo interface:
-python run_adsun_gui.py        # Kompletný systém
-python run_airtable_manager.py # Clean chat
+# Spustenie aplikácie
+python run_adsun_gui.py
 ```
 
-## 🏗️ Architektúra
+**Aplikácia sa otvorí na: http://localhost:8501**
 
+### 2. Deploy na Streamlit Cloud
+
+1. **Fork tento repozitár**
+2. **Prejdite na [share.streamlit.io](https://share.streamlit.io/)**
+3. **Pripojte GitHub repozitár**
+4. **Main file**: `main_app.py`
+5. **Pridajte OpenAI API kľúč v Secrets**:
+   ```
+   OPENAI_API_KEY = "your-api-key-here"
+   ```
+6. **Deploy!**
+
+## 🔧 Konfigurácia
+
+### Environment Variables
+```env
+OPENAI_API_KEY=your_openai_api_key_here
 ```
-ADSUN System
-├── 🎯 launcher.py                 # Hlavný menu launcher
-├── 🤖 adsun_ai_gui.py            # Kompletný AI Assistant
-├── 🗄️ adsun_airtable_manager.py  # Clean chat interface
-├── 🔐 api_manager.py             # Bezpečné API kľúče
-├── 🗄️ airtable_connector.py      # Cloud databáza
-├── 🧠 AI reasoning modules       # OpenAI integrácia
-└── 📊 Database managers          # SQLite + Hybrid
-```
 
-## 🎨 UI Design
+### Databáza
+Systém automaticky vytvorí SQLite databázu `adsun_processes.db` pri prvom spustení.
 
-### ADSUN AI Assistant
-- **Moderný card-based layout**
-- **Responsive dizajn**
-- **Interaktívne elementy**
-- **Profesionálne farby**
+## 📖 Používateľská príručka
 
-### Airtable Manager  
-- **Clean minimalistický dizajn**
-- **Chat-focused interface**
-- **Rýchle action buttony**
-- **Status indikátory**
+### Vytvorenie procesu
 
-## 🔒 Bezpečnosť
+#### Spôsob 1: Postupný sprievodca
+1. Choďte do **"🎓 Tvorba procesov"**
+2. Vyberte **"🔄 Postupný sprievodca"**
+3. Vyplňte postupne všetky polia s AI pomocou
+4. Uložte proces
 
-- **API kľúče nikdy v kóde**
-- **Lokálne šifrovanie**
-- **Session-based autentifikácia**
-- **Oprávnenia pre súbory**
+#### Spôsob 2: Bulk import
+1. Skopírujte ChatGPT konverzáciu o procese
+2. Vyberte **"📥 Bulk import z ChatGPT"**
+3. Vložte text konverzácie
+4. AI automaticky extrahuje štruktúrované dáta
+5. Upravte podľa potreby a uložte
 
-## 🚀 Použitie
+### AI Asistent
+- Choďte do **"🤖 AI Asistent"**
+- Pýtajte sa otázky ako:
+  - "Aké procesy máme?"
+  - "Koľko procesov má oddelenie obchod?"
+  - "Ktoré procesy majú najvyššiu prioritu?"
 
-1. **Spustite launcher:** `python launcher.py`
-2. **Vyberte interface** podľa vašich potrieb
-3. **Nastavte API kľúče** (jednorazovo)
-4. **Začnite dokumentovať procesy!**
+## 🎨 Screenshots
+
+### Dashboard
+![Dashboard](docs/dashboard.png)
+
+### Process Creation
+![Process Creation](docs/process-creation.png)
+
+### AI Assistant
+![AI Assistant](docs/ai-assistant.png)
+
+## 🤝 Príspevky
+
+Vítame príspevky od komunity! 
+
+1. **Fork** repozitár
+2. **Vytvorte** feature branch (`git checkout -b nova-funkcionalita`)
+3. **Commit** zmeny (`git commit -am 'Pridaná nová funkcionalita'`)
+4. **Push** do branch (`git push origin nova-funkcionalita`)
+5. **Vytvorte** Pull Request
+
+## 📝 Licencia
+
+Tento projekt je licencovaný pod MIT licenciou - detaily v [LICENSE](LICENSE) súbore.
+
+## 🆘 Podpora
+
+### Dokumentácia
+- [Deployment Guide](DEPLOYMENT.md)
+- [API Documentation](docs/api.md)
+- [User Manual](docs/manual.md)
+
+### Kontakt
+- **GitHub Issues**: [Nahlásiť problém](https://github.com/zonabxxx/adsun-manager/issues)
+- **Email**: support@adsun.sk
+- **Discord**: [ADSUN Community](https://discord.gg/adsun)
+
+## 🏆 Autori
+
+**ADSUN Development Team**
+- Lead Developer: [@zonabxxx](https://github.com/zonabxxx)
+- AI Specialist: ADSUN AI
+- UX Designer: ADSUN Design
 
 ---
 
-## 📞 Podpora
+**⭐ Ak sa vám projekt páči, pridajte hviezdu na GitHub!**
 
-Pre otázky a problémy vytvorte issue alebo kontaktujte vývojový tím.
-
-**🎯 ADSUN - Automatizujeme váš business!** 
+[![GitHub stars](https://img.shields.io/github/stars/zonabxxx/adsun-manager.svg?style=social&label=Star)](https://github.com/zonabxxx/adsun-manager) 
