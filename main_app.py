@@ -207,7 +207,7 @@ def main():
         render_assistant_mode()
     
     # Business management módy
-    elif st.session_state.mode == "processes":
+    elif st.session_state.mode == "process_management":
         render_process_management()
     elif st.session_state.mode == "departments":
         render_departments()
